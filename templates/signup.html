@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="px-3 py-5">
+        {% if erreur %}
+            <p>Error : {{erreur}}</p>
+        {% endif %}
+        <form method="POST" action = "{{url_for('signup')}}">
+            <div>
+                <input name="user" type = "text" placeholder="Username" class="flex justify-self-center my-3">
+            </div>
+            <div>
+                <input name="password" type = "password" placeholder="Password" class="flex justify-self-center my-3">
+            </div>
+            <div>
+                <input name="confirm_password" type = "password" placeholder="Confirm Password" class="flex justify-self-center my-3">
+            </div>
+            <div>
+                <button type="submit" class="flex justify-self-center my-3">Register</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
