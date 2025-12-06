@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Celeste Discusion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    
+    <header class="bg-[#bbf6ff] flex justify-between p-16">
+        <h1>Celeste Discusion</h1>
+        {%if session['user']%}
+        <h1>{{session['user']}}</h1>
+        {%endif%}
+        <form action="/search" method="get" class="">
+            <input type="text" name="q" placeholder="Recherche" class="">
+            <button type="submit" class="">🔎</button>
+        </form>
+        <nav>
+            <li><button class="px-4 py-1 hover:bg-[#b6e7ff] active:bg-[#b6caff] focus:outline-none focus:ring focus:ring-[#b6caff] rounded-full"><a href="/">Menu</a></button></li>
+            {%if session['user']%}
+            <li><button class="px-4 py-1 hover:bg-[#b6e7ff] active:bg-[#b6caff] focus:outline-none focus:ring focus:ring-[#b6caff] rounded-full"><a href="/publish">Publish</a></button></li>
+            <li><button class="px-4 py-1 hover:bg-[#b6e7ff] active:bg-[#b6caff] focus:outline-none focus:ring focus:ring-[#b6caff] rounded-full"><a href="/disconnect">Disconnect</a></button></li>
+            {%else%}
+            <li><button class="px-4 py-1 hover:bg-[#b6e7ff] active:bg-[#b6caff] focus:outline-none focus:ring focus:ring-[#b6caff] rounded-full"><a href="/login">Log In</a></button></li>
+            <li><button class="px-4 py-1 hover:bg-[#b6e7ff] active:bg-[#b6caff] focus:outline-none focus:ring focus:ring-[#b6caff] rounded-full"><a href="/signup">Sign Up</a></button></li>
+            {%endif%}
+        </nav>
+    </header>
+    <main class="bg-[#b6caff]">
+        {%block content%}
+        {%endblock%}
+    </main>
+
+    <footer class="bg-[#ffb6f8]">
+        <h2>Patrick 2025</h2>
+        <p>patrick.addison45@gmail.com</p>
+    </footer>
 </body>
 </html>
