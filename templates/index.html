@@ -3,7 +3,20 @@
 {%if erreur%}
     {{erreur}}
 {%endif%}
-    
-
+    <div>
+        <h2 class="grid place-content-center text-xl">Information</h2>
+        <p class="grid place-content-center text-xl">Here you shall find some information and activity around the popular video game Celeste. Log in to publish or to respond to publication.</p>
+    </div>
+    <br/>
+    <section class="grid grid-cols-4 grid-rows-2 gap-20 p-5">
+        {%for article in articles%}
+            <article class="p-3 bg-white shadow-2xl border-[#e8b6ff] border-solid border-2 rounded-lg">
+                <h2 class="text-lg text-center pb-1">{{article["Title"]}}</h2>
+                <!-- Image here maybe, or onclick? -->
+                 <p>{{article['Description']}}</p>
+                 <footer class="flex justify-end text-xs">submitted by {{article['User']}}</footer>
+            </article>
+        {%endfor%}
+    </section>
 
 {%endblock%}

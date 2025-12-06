@@ -12,7 +12,8 @@ app.secret_key = 'nqLQFbF7BHtxcOSD'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    article_data = list(db['Article'].find({}))
+    return render_template('index.html',articles = article_data)
 
 
 
