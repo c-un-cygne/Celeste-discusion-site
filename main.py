@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
+from bson.objectid import ObjectId
 import pymongo
 import os
 
@@ -87,6 +88,10 @@ def search():
         }))
     return render_template("search_result.html", articles=res[::-1], query=query)
 
+@app.route('/index/<id_article>')
+def open(id_article):
+    res = db['Article'].find_one({'_id':ObjectId(id_article)})
+    return render_template('open.html',article = res)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=81)

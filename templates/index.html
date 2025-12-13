@@ -10,12 +10,13 @@
     <br/>
     <section class="grid grid-cols-4 grid-rows-2 gap-20 p-5">
         {%for article in articles%}
-            <article class="p-3 bg-white shadow-2xl border-[#e8b6ff] border-solid border-2 rounded-lg">
-                <h2 class="text-lg text-center pb-1">{{article["Title"]}}</h2>
-                <!-- Image here maybe, or onclick? -->
-                 <p>{{article['Description']}}</p>
-                 <footer class="flex justify-end text-xs">submitted by {{article['User']}}</footer>
-            </article>
+            <a href="/index/{{article['_id']}}" onclick="">
+                <button class="p-3 bg-white shadow-2xl border-[#e8b6ff] border-solid border-2 rounded-lg">
+                    <h2 class="text-lg text-center pb-1">{{article["Title"]}}</h2>
+                    <p>{{article['Description']}}</p>
+                    <footer class="flex justify-end text-xs">submitted by {{article['User']}}</footer>
+                </button>
+            </a>
         {%endfor%}
 
     </section>
