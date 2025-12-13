@@ -55,7 +55,22 @@ def disconnect():
     session.clear()
     return redirect(url_for('index'))
 
-
+@app.route('/publish', methods=["POST","GET"])
+def publish():
+    if 'user' not in session:
+        return render_template('signup.html')
+    if request.method == 'POST':
+        db_articles = db["Article"]
+        if request.form['title'] and request.form['description']:
+            db_articles.insert_one({
+                'Title':request.form['title'],
+                'Description':request.form['description'],
+                'User':session['user'],
+                'Image':request.form['image']
+            })
+        return redirect(url_for('index'))
+    else:
+        return render_template('publish.html', erreur="Fill in all mandatory fields")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=81)

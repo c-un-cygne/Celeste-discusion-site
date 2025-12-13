@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+{%block content%}
+    <div class="px-3 py-5">
+        {% if erreur %}
+            <p class="flex justify-self-center my-3">Error : {{erreur}}</p>
+        {% endif %}
+        <form method="POST" action="{{url_for('publish')}}">
+            <div>
+                <input name="title" type = "text" placeholder="Article title" class="flex justify-self-center my-3">
+            </div>
+            <div>
+                <input name="image" type = "text" placeholder="Image url (optional)" class="flex justify-self-center my-3">
+            </div>
+            <div>
+                <textarea name="description" cols="100" placeholder="Article content" class="flex justify-self-center my-3"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="flex justify-self-center my-3">Publish</button>
+            </div>
+        </form>
+    </div>
+{%endblock%}
