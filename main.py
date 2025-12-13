@@ -13,7 +13,7 @@ app.secret_key = 'nqLQFbF7BHtxcOSD'
 @app.route('/')
 def index():
     article_data = list(db['Article'].find({}))
-    return render_template('index.html',articles = article_data)
+    return render_template('index.html',articles = article_data[::-1])
 
 @app.route('/login', methods=['POST','GET'])
 def login():
@@ -72,6 +72,20 @@ def publish():
     else:
         return render_template('publish.html', erreur="Fill in all mandatory fields")
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('q','').strip()
+    if query == '':
+        res = list(db['Article'].find({}))
+    else:
+        res = list(db['Article'].find({
+            "$or":[
+                {"Title":{"$regex":query,"$options":"i"}},
+                {"Description" : {"$regex":query,"$options":"i"}},
+                {"User" : {"$regex":query,"$options":"i"}}
+            ]
+        }))
+    return render_template("search_result.html", articles=res[::-1], query=query)
 
 
 if __name__ == "__main__":

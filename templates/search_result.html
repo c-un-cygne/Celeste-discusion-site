@@ -1,11 +1,14 @@
 {%extends 'base.html'%}
 {%block content%}
-{%if erreur%}
-    {{erreur}}
-{%endif%}
+{% if erreur %}
+    <p class="flex justify-self-center my-3">Error : {{erreur}}</p>
+{% endif %}
     <div>
-        <h2 class="grid place-content-center text-xl">Information</h2>
-        <p class="grid place-content-center text-xl">Here you shall find some information and activity around the popular video game Celeste. Log in to publish or to respond to publication.</p>
+        {%if articles|length == 0 %}
+            <h2 class="grid place-content-center text-xl py-3">No results for "{{query}}"</h2>
+        {%else%}
+            <h2 class="grid place-content-center text-xl py-3">Results for "{{query}}"</h2>
+        {%endif%}
     </div>
     <br/>
     <section class="grid grid-cols-4 grid-rows-2 gap-20 p-5">
@@ -17,7 +20,6 @@
                  <footer class="flex justify-end text-xs">submitted by {{article['User']}}</footer>
             </article>
         {%endfor%}
-
     </section>
 
 {%endblock%}
